@@ -7,7 +7,7 @@ public class UpgradeCard : ACard
     public static event Action<int> upgradeHp;
     public static event Action<float> upradeAttackSpeed;
     public static event Action<int> upradeDamage;
-    public static event Action<int> upradeRagenHealts;
+    //public static event Action<int> upradeRagenHealts;
 
     public static event Action<int> AddCoin;
 
@@ -26,11 +26,13 @@ public class UpgradeCard : ACard
         upradeDamage.Invoke(DamageBonus);
         CardSelected();
     }
-    public void InvoikeUpradeRagenHealts(int RegenBonus)
-    {
-        upradeRagenHealts.Invoke(RegenBonus);
-        CardSelected();
-    }
+
+    // ввести позже 
+    //public void InvoikeUpradeRagenHealts(int RegenBonus) 
+    //{
+    //    upradeRagenHealts.Invoke(RegenBonus);
+    //    CardSelected();
+    //}
     public void InvokeAddCoin(int Coin)
     {
         AddCoin.Invoke(Coin);

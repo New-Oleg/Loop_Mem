@@ -20,6 +20,14 @@ public class TextController : MonoBehaviour
     [SerializeField, Tooltip("ccылка на текст с шансом дропа редкой")]
     private TextMeshProUGUI RarChanse;
 
+
+    [SerializeField, Tooltip("ccылка на текст с хп героя (запись в формате Max/Now)")]
+    private TextMeshProUGUI HealtsText;
+    [SerializeField, Tooltip("ccылка на текст с уроном героя")]
+    private TextMeshProUGUI CharacterDamageText;
+    [SerializeField, Tooltip("ccылка на текст со скоростю атаки")]
+    private TextMeshProUGUI CharacterAtackSpeedText;
+
     [SerializeField, Tooltip("ccылка на префаб pop up текста")]
     private TextMeshProUGUI DamageText;
 
@@ -29,6 +37,7 @@ public class TextController : MonoBehaviour
         ShopController.OnPriceChannget += UpdatePriceText;
         CardDroper.ChangeChance += UpdateChanceText;
         Unit.OnTakeDamage += PopUpDamage;
+        Character.OnStatChanget += UpdateCharacterStat;
     }
 
     private void OnDisable()
@@ -37,6 +46,7 @@ public class TextController : MonoBehaviour
         ShopController.OnPriceChannget -= UpdatePriceText;
         CardDroper.ChangeChance -= UpdateChanceText;
         Unit.OnTakeDamage -= PopUpDamage;
+        Character.OnStatChanget -= UpdateCharacterStat;
     }
 
     private void UpdateUICoin(int c)
@@ -61,6 +71,14 @@ public class TextController : MonoBehaviour
     {
         if (epic != null) EpicChanse.text = epic + "";
         if (rar != null) RarChanse.text = rar + "";
+    }
+
+    private void UpdateCharacterStat(int? maxHp, int? nowHp,int? Damage, float? AtackSpeed)
+    {
+
+        if (maxHp != null) HealtsText.text = maxHp + " / " + nowHp;
+        if (Damage != null) CharacterDamageText.text = Damage + "";
+        if (AtackSpeed != null) CharacterAtackSpeedText.text = AtackSpeed + "";
     }
 
 }

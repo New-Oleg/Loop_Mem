@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a25212050b5b1747881b5ef7e1e25b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  AttackSpeed: 0
-  MaxHealts: 0
+  Damage: 15
+  AttackSpeed: 1.5
+  MaxHealts: 25
   Healts: 0
-  Rare: 0
-  Reward: 0
+  Rare: 3
+  Reward: 20
