@@ -8,6 +8,7 @@ public class FightController : MonoBehaviour
 {
     public static event Action EndFight;
     public static event Action<int> GetRevard;
+    public static event Action OnLoos;
 
     private Character Character;
     private Monster monster;
@@ -67,7 +68,7 @@ public class FightController : MonoBehaviour
 
         if (!Character.IsAlive())
         {
-            Debug.Log("Персонаж проиграл");
+            OnLoos.Invoke();
         }
         else
         {

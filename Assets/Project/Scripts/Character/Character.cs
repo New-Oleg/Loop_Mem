@@ -7,14 +7,13 @@ public class Character : Unit //можно разморозить реген позже
     public static event Action<int?, int?, int?, float?> OnStatChanget;
 
 
-    private int RegenCoef = 0;
+    protected internal int RegenCoef = 0;
     protected override void OnEnable()
     {
         base.OnEnable();
         UpgradeCard.upgradeHp += UpradeHP;
         UpgradeCard.upradeAttackSpeed += UpradeAttackSpeed;
         UpgradeCard.upradeDamage += UpradeDamage;
-        //UpgradeCard.upradeRagenHealts += UpgradeRegen;
     }
 
     protected override void OnDisable()
@@ -23,25 +22,24 @@ public class Character : Unit //можно разморозить реген позже
         UpgradeCard.upgradeHp -= UpradeHP;
         UpgradeCard.upradeAttackSpeed -= UpradeAttackSpeed;
         UpgradeCard.upradeDamage -= UpradeDamage;
-        //UpgradeCard.upradeRagenHealts -= UpgradeRegen;
     }
 
 
     private void Start()
     {
-        //InvokeRepeating(nameof(InvockeRegenHealts), 1, 1); 
+        InvokeRepeating(nameof(InvockeRegenHealts), 1, 1); 
         OnStatChanget.Invoke(MaxHealts, Healts, Damage, AttackSpeed);
     }
 
-    //private void UpgradeRegen(int R)
-    //{
-    //    RegenCoef += R;
-    //}
+    public void UpgradeRegen(int R)
+    {
+        RegenCoef += R;
+    }
 
-    //private void InvockeRegenHealts()
-    //{
-    //    RegenHealts(RegenCoef);
-    //}
+    private void InvockeRegenHealts()
+    {
+        RegenHealts(RegenCoef);
+    }
 
 
     public override void RegenHealtsOnEndTurn()
@@ -70,4 +68,5 @@ public class Character : Unit //можно разморозить реген позже
         base.UpradeAttackSpeed(bonus);
         OnStatChanget.Invoke(null, null, null, AttackSpeed);
     }
+
 }

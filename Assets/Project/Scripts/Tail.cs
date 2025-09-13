@@ -5,6 +5,9 @@ public class Tail : MonoBehaviour
 {
     public static event Action StartFight;
 
+    public static event Action<Monster> GetRoadInfo;
+    public static event Action UnshowInfo;
+
     [HideInInspector]
     public int Number;
 
@@ -33,6 +36,26 @@ public class Tail : MonoBehaviour
         {
             StartFight.Invoke();
         }    
+    }
+
+    private void OnMouseEnter()
+    {
+        if (IsHaveMonster)
+        {
+            InvokeRepeating(nameof(InvokeGetRoadInfo), 0, 0.2f);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        CancelInvoke(nameof(InvokeGetRoadInfo));
+        UnshowInfo.Invoke();
+    }
+
+    private void InvokeGetRoadInfo()
+    {
+
+            GetRoadInfo.Invoke(GetComponentInChildren<Monster>());
     }
 
     public void TakeAMob(GameObject Mob)

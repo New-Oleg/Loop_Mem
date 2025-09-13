@@ -7,12 +7,13 @@ public class Unit : MonoBehaviour
     public static event Action<int, Transform> OnTakeDamage;
 
     [SerializeField]
-    protected int Damage;
-
-    public float AttackSpeed;
+    protected internal int Damage;
 
     [SerializeField]
-    protected int MaxHealts;
+    protected internal float AttackSpeed;
+
+    [SerializeField]
+    protected internal int MaxHealts;
 
     public int Healts;
 
